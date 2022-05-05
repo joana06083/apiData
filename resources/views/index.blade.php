@@ -8,12 +8,10 @@
     <title>首頁</title>
 </head>
 <body>
-<div class="container">
-    <br>
-
-    <h5>活動資訊</h5>
-    <a class="btn btn-secondary" href="/fetch">取得最新資料</a>
-    <table class="table table-hover">
+<br>
+<h5>活動資訊</h5><a class="btn btn-secondary" href="/fetch">取得最新資料</a>
+<div class="">
+    <table class="table table-hover table align-middle" style="table-layout:fixed;word-break:break-all;">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -43,7 +41,9 @@
     </tbody>
     @endforeach
     </table>
-
+<div class="col-md-12">
+{{ $ActivityInfo->links() }}
+</div>
 
 </div>
 
