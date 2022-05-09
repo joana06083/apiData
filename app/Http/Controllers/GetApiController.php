@@ -54,25 +54,12 @@ class GetApiController extends Controller
             ->select('ActivityName', 'ActivityTime', 'ActivityTicket', 'ActivityPlace', 'ActivityTicketPrice', 'ActivityImage', 'ActivityUrl', 'ActivityEnter')
             ->get();
 
-        // $ActCheck = openData::select('ActivityName', 'ActivityTime', 'ActivityTicket', 'ActivityPlace', 'ActivityTicketPrice', 'ActivityImage', 'ActivityUrl', 'ActivityEnter')
-        //     ->get();
-        // $ActCheck2 = openData::select('ActivityName', 'ActivityTime', 'ActivityTicket', 'ActivityPlace', 'ActivityTicketPrice', 'ActivityImage', 'ActivityUrl', 'ActivityEnter')
-        //     ->take(2)->get();
-        // $arr1 = json_decode($ActCheck, true);
-        // $arr2 = json_decode($ActCheck2, true);
-
-        if (!isset($ActCheck)) {
-            //資料庫不為空，但無重複資料
-            return redirect('/');
-        }
-
-        //只顯示不重複的資料
         $ActCheckarr = json_decode($ActCheck, true);
         $diff = array_diff(array_map('serialize', $arrData), array_map('serialize', $ActCheckarr));
         $result = array_map('unserialize', $diff);
 
         openData::insert($result);
-
+        return redirect('/');
     }
 
 }
